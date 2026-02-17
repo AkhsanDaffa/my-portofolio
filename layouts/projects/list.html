@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="mb-20">
+    <h1 class="text-3xl font-bold text-blue-400 mb-8">## ls -la ./projects (All Projects)</h1>
+    <div class="grid grid-cols-1 gap-6">
+        {{ range .Pages }}
+        <a href="{{ .RelPermalink }}" class="block border border-gray-700 p-6 hover:border-green-500 transition-colors bg-gray-800/50">
+            <h2 class="text-2xl font-bold text-white mb-2">{{ .Title }}</h2>
+            <p class="text-sm text-gray-400 mb-4">{{ .Params.summary }}</p>
+            <div class="flex flex-wrap gap-2 text-xs text-green-300">
+                {{ range .Params.tags }}
+                <span>#{{ . }}</span>
+                {{ end }}
+            </div>
+        </a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

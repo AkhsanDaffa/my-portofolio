@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="mb-20">
+    <header class="mb-8 border-b border-gray-700 pb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-green-400 mb-4">> cat {{ .Title | lower | replaceRE " " "_" }}.md<span class="cursor-blink">_</span></h1>
+    </header>
+    <div class="prose prose-invert prose-green max-w-none text-gray-300">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
