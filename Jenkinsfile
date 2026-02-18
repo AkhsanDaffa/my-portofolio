@@ -56,6 +56,11 @@ pipeline {
                 // 3. Perintahkan Raspi Update (Pakai kunci fisik id_rsa)
                 sh """
                     ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no akhsan_server@172.17.0.1 '
+                        # --- TAMBAHAN PENTING ---
+                        # Beritahu kubectl untuk pakai config user, bukan config root
+                        export KUBECONFIG=~/.kube/config
+                        #
+                        
                         kubectl apply -f ~/k8s-deploy/
                         
                         # Paksa restart agar image terbaru ter-pull
