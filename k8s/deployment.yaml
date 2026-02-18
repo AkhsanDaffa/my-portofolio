@@ -24,4 +24,4 @@ spec:
         image: jawaracode/portofolio-web
         imagePullPolicy: Always
         ports:
-        - containerPort:80
+        - containerPort: 80
