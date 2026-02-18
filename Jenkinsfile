@@ -48,7 +48,7 @@ pipeline {
                 echo '🚀 Memulai Deployment ke K3s Cluster...'
                 
                 // Menggunakan kredensial SSH Raspi yang sudah kamu simpan
-                sshagent(['akhsan_server']) {
+                sshagent(['server-host-ssh']) {
                     // 1. Buat folder penampungan di Raspi (jika belum ada)
                     sh "ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 'mkdir -p ~/k8s-deploy'"
 
