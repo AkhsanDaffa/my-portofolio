@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: portofolio
-        image: akhsan-portofolio:latest
+        image: jawaracode/portofolio-web:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
