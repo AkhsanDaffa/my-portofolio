@@ -32,10 +32,14 @@ pipeline {
             }
         }
 
-        stage('Pembersihan') {
+        stage('Deploy ke Raspi') {
            steps {
-             echo 'Delete Local image'
-            sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+                echo 'Medeploy container baru ke Localhost...'
+
+                sh "docker stop portofolio-web || true"
+                sh "docker rm portofolio-web || true"
+
+                sh "docker run -d -p 2001:80 --name portofolio-web ${DOCKER_IMAGE}:latest"
            }        
         }
     }
