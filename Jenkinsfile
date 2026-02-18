@@ -47,27 +47,24 @@ pipeline {
             steps {
                 echo '🚀 Memulai Deployment ke K3s Cluster...'
                 
-                // Menggunakan kredensial SSH Raspi yang sudah kamu simpan
-                sshagent(['server-host-ssh']) {
-                    // 1. Buat folder penampungan di Raspi (jika belum ada)
-                    sh "ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 'mkdir -p ~/k8s-deploy'"
+                // 1. Buat folder penampungan (Pakai kunci fisik id_rsa)
+                sh "ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no akhsan_server@172.17.0.1 'mkdir -p ~/k8s-deploy'"
 
-                    // 2. Kirim file YAML terbaru dari Jenkins ke Raspi
-                    sh "scp -o StrictHostKeyChecking=no -r k8s/* akhsan_server@192.168.0.120:~/k8s-deploy/"
+                // 2. Kirim file YAML (Pakai kunci fisik id_rsa)
+                sh "scp -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no -r k8s/* akhsan_server@172.17.0.1:~/k8s-deploy/"
 
-                    // 3. Perintahkan Raspi untuk menerapkan update
-                    sh """
-                        ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 '
-                            kubectl apply -f ~/k8s-deploy/
-                            
-                            # Paksa restart agar image terbaru ter-pull
-                            kubectl rollout restart deployment/portofolio-web
-                            
-                            # Cek status rollout
-                            kubectl rollout status deployment/portofolio-web
-                        '
-                    """
-                }
+                // 3. Perintahkan Raspi Update (Pakai kunci fisik id_rsa)
+                sh """
+                    ssh -i /var/jenkins_home/.ssh/id_rsa -o StrictHostKeyChecking=no akhsan_server@172.17.0.1 '
+                        kubectl apply -f ~/k8s-deploy/
+                        
+                        # Paksa restart agar image terbaru ter-pull
+                        kubectl rollout restart deployment/portofolio-web
+                        
+                        # Tunggu sampai update selesai
+                        kubectl rollout status deployment/portofolio-web
+                    '
+                """
             }
         }
     }
