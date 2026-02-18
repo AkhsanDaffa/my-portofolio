@@ -46,11 +46,16 @@ pipeline {
         stage('Deploy ke Kubernetes') {
             steps {
                 echo '🚀 Memulai Deployment ke K3s Cluster...'
-
+                
+                // Menggunakan kredensial SSH Raspi yang sudah kamu simpan
                 sshagent(['akhsan_server']) {
+                    // 1. Buat folder penampungan di Raspi (jika belum ada)
                     sh "ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 'mkdir -p ~/k8s-deploy'"
+
+                    // 2. Kirim file YAML terbaru dari Jenkins ke Raspi
                     sh "scp -o StrictHostKeyChecking=no -r k8s/* akhsan_server@192.168.0.120:~/k8s-deploy/"
 
+                    // 3. Perintahkan Raspi untuk menerapkan update
                     sh """
                         ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 '
                             kubectl apply -f ~/k8s-deploy/
