@@ -32,7 +32,7 @@ pipeline {
 
         stage('Pembersihan') {
             echo 'Delete Local image'
-            sg "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+            sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
         }
     }
 }
