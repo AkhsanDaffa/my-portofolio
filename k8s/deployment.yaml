@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portofolio-web
+  labels:
+    app: portofolio
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: portofolio
+  strategy:
+    type: RollingUpdate
+    RollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: portofolio
+    spec:
+      containers:
+      - name: portofolio
+        image: jawaracode/portofolio-web
+        imagePullPolicy: Always
+        ports:
+        - containerPort:80
