@@ -32,15 +32,38 @@ pipeline {
             }
         }
 
-        stage('Deploy ke Raspi') {
-           steps {
-                echo 'Medeploy container baru ke Localhost...'
+        // stage('Deploy ke Raspi') {
+        //    steps {
+        //         echo 'Medeploy container baru ke Localhost...'
 
-                sh "docker stop portofolio-web || true"
-                sh "docker rm portofolio-web || true"
+        //         sh "docker stop portofolio-web || true"
+        //         sh "docker rm portofolio-web || true"
 
-                sh "docker run -d -p 2001:80 --name portofolio-web ${DOCKER_IMAGE}:latest"
-           }        
+        //         sh "docker run -d -p 2001:80 --name portofolio-web ${DOCKER_IMAGE}:latest"
+        //    }        
+        // }
+
+        stage('Deploy ke Kubernetes') {
+            steps {
+                echo '🚀 Memulai Deployment ke K3s Cluster...'
+
+                sshagent(['akhsan_server']) {
+                    sh "ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 'mkdir -p ~/k8s-deploy'"
+                    sh "scp -o StrictHostKeyChecking=no -r k8s/* akhsan_server@192.168.0.120:~/k8s-deploy/"
+
+                    sh """
+                        ssh -o StrictHostKeyChecking=no akhsan_server@192.168.0.120 '
+                            kubectl apply -f ~/k8s-deploy/
+                            
+                            # Paksa restart agar image terbaru ter-pull
+                            kubectl rollout restart deployment/portofolio-web
+                            
+                            # Cek status rollout
+                            kubectl rollout status deployment/portofolio-web
+                        '
+                    """
+                }
+            }
         }
     }
 }
