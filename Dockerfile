@@ -1,6 +1,6 @@
 # Stage 1: Build static site
 # FROM klakegg/hugo:ext-alpine AS builder
-FROM --platform=linux/arm64 klakegg/hugo:ext-alpine AS builder
+FROM hugomods/hugo:ext-alpine AS builder
 WORKDIR /src
 COPY . .
 
