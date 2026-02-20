@@ -13,23 +13,51 @@
         ::-webkit-scrollbar-track { background: #111827; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .mobile-menu.open { max-height: 200px; }
+        #hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        #hamburger.active span:nth-child(2) { opacity: 0; }
+        #hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        #hamburger span { transition: all 0.3s ease; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300 font-mono leading-relaxed selection:bg-green-500 selection:text-black">
 
-    <div class="max-w-5xl mx-auto px-6 py-8">
-        
-        <nav class="mb-12 border-b border-gray-700 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <a href="/" class="text-xl font-bold text-green-400 hover:text-white">> akhsan_daffa<span class="cursor-blink">_</span></a>
-            <div class="flex flex-wrap gap-4 text-sm font-bold">
-                <a href="/" class="hover:text-green-400">[ Home ]</a>
-                <a href="/projects" class="hover:text-blue-400">[ Projects ]</a>
-                <a href="/resume" class="hover:text-yellow-400">[ Resume ]</a>
-                <a href="/metrics" class="hover:text-purple-400">[ Metrics ]</a>
-            </div>
-        </nav>
+    <nav class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur border-b border-gray-700 pb-4 pt-4">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="text-xl font-bold text-green-400 hover:text-white">> akhsan_daffa<span class="cursor-blink">_</span></a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex flex-wrap gap-4 text-sm font-bold">
+                    <a href="/" class="hover:text-green-400">[ Home ]</a>
+                    <a href="/projects" class="hover:text-blue-400">[ Projects ]</a>
+                    <a href="/resume" class="hover:text-yellow-400">[ Resume ]</a>
+                    <a href="/metrics" class="hover:text-purple-400">[ Metrics ]</a>
+                </div>
 
-        <main min-h-screen>
+                <!-- Mobile Hamburger Button -->
+                <button id="hamburger" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5" aria-label="Toggle menu">
+                    <span class="w-6 h-0.5 bg-gray-300 transition-transform"></span>
+                    <span class="w-6 h-0.5 bg-gray-300 transition-opacity"></span>
+                    <span class="w-6 h-0.5 bg-gray-300 transition-transform"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden mt-4 pb-2">
+                <div class="flex flex-col gap-2 text-sm font-bold">
+                    <a href="/" class="hover:text-green-400 py-2">[ Home ]</a>
+                    <a href="/projects" class="hover:text-blue-400 py-2">[ Projects ]</a>
+                    <a href="/resume" class="hover:text-yellow-400 py-2">[ Resume ]</a>
+                    <a href="/metrics" class="hover:text-purple-400 py-2">[ Metrics ]</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-6 py-8">
+        <main>
             {{ block "main" . }}{{ end }}
         </main>
 
@@ -39,5 +67,23 @@
         </footer>
 
     </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const spans = hamburger.querySelectorAll('span');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

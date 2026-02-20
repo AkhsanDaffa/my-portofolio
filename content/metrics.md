@@ -5,7 +5,6 @@ date: 2026-02-17
 
 Halaman ini menampilkan metrik *live* langsung dari peladen (server) **Raspberry Pi 4B (8GB)** saya yang berada di kamar, dipantau menggunakan Prometheus dan Grafana di dalam klaster Kubernetes (K3s).
 
-> **Note:** Metrik hanya dapat diakses dari jaringan lokal (LAN). Jika Anda mengakses dari luar jaringan, metrik tidak akan muncul.
 
 ### 🖥️ Server Specifications
 
