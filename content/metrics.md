@@ -31,13 +31,13 @@ Halaman ini menampilkan metrik *live* langsung dari peladen (server) **Raspberry
         <div class="bg-gray-800 px-4 py-2 border-b border-gray-700">
             <span class="text-green-400 text-sm font-bold">CPU Usage</span>
         </div>
-        <iframe src="http://192.168.0.120:3000/d-solo/7d57716318ee0dddbac5a7f451fb7753/node-exporter-nodes?orgId=1&from=1771296508826&to=1771300108826&timezone=utc&var-datasource=prometheus&var-cluster=$__all&var-instance=192.168.0.120:9100&refresh=30s&panelId=panel-2&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
+       <iframe src="http://monitoring1226.akhsanpasha.my.id/d-solo/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&timezone=utc&var-datasource=default&var-cluster=&var-namespace=monitoring&refresh=10s&panelId=panel-5&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
     </div>
     <div class="border border-gray-700 rounded overflow-hidden bg-gray-800/50">
         <div class="bg-gray-800 px-4 py-2 border-b border-gray-700">
             <span class="text-blue-400 text-sm font-bold">Memory Usage</span>
         </div>
-        <iframe src="http://192.168.0.120:3000/d-solo/7d57716318ee0dddbac5a7f451fb7753/node-exporter-nodes?orgId=1&timezone=utc&var-datasource=prometheus&var-cluster=$__all&var-instance=192.168.0.120:9100&refresh=30s&panelId=panel-5&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
+        <iframe src="http://monitoring1226.akhsanpasha.my.id/d-solo/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&timezone=utc&var-datasource=default&var-cluster=&var-namespace=monitoring&refresh=10s&panelId=panel-7&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
     </div>
 </div>
 
@@ -48,8 +48,8 @@ Halaman ini menampilkan metrik *live* langsung dari peladen (server) **Raspberry
         <span class="text-yellow-400 text-sm font-bold">Network I/O</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-        <iframe src="http://192.168.0.120:3000/d-solo/7d57716318ee0dddbac5a7f451fb7753/node-exporter-nodes?orgId=1&timezone=utc&var-datasource=prometheus&var-cluster=$__all&var-instance=192.168.0.120:9100&refresh=30s&panelId=panel-11&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
-        <iframe src="http://192.168.0.120:3000/d-solo/7d57716318ee0dddbac5a7f451fb7753/node-exporter-nodes?orgId=1&from=1771297884353&to=1771301484353&timezone=utc&var-datasource=prometheus&var-cluster=$__all&var-instance=192.168.0.120:9100&refresh=30s&panelId=panel-12&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
+       <iframe src="http://monitoring1226.akhsanpasha.my.id/d-solo/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&timezone=utc&var-datasource=default&var-cluster=&var-namespace=monitoring&refresh=10s&panelId=panel-10&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
+        <iframe src="http://monitoring1226.akhsanpasha.my.id/d-solo/85a562078cdf77779eaa1add43ccec1e/kubernetes-compute-resources-namespace-pods?orgId=1&timezone=utc&var-datasource=default&var-cluster=&var-namespace=monitoring&refresh=10s&panelId=panel-11&__feature.dashboardSceneSolo=true" width="100%" height="200" frameborder="0"></iframe>
     </div>
 </div>
 
